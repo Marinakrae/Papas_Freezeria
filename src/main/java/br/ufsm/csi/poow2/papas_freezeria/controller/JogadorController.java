@@ -11,11 +11,13 @@ import java.util.List;
 @RequestMapping("freezeria/jogador")
 public class JogadorController {
 
+    //colocar de volta os statics?
+
     @Autowired
-    private static Jogador_Repository jogador_repository;
+    private Jogador_Repository jogador_repository;
 
     @GetMapping("/listar")
-    public static List<Jogador> getJogador() {
+    public List<Jogador> getJogador() {
         List<Jogador> Jogador = jogador_repository.findAll();
         return Jogador;
     }
@@ -27,18 +29,18 @@ public class JogadorController {
     }
 
     @PostMapping("/salvar")
-    public static void salvar(@RequestBody Jogador Jogador) {
+    public void salvar(@RequestBody Jogador Jogador) {
         jogador_repository.save(Jogador);
     }
 
     //delete mapping?
     @PostMapping("/apagar")
-    public static void apagar(@RequestBody Jogador Jogador) {
+    public void apagar(@RequestBody Jogador Jogador) {
         jogador_repository.delete(Jogador);
     }
 
     @PutMapping("/editar/{id}")
-    public static void editar(@PathVariable("id") int id, @RequestBody Jogador jogador) {
+    public void editar(@PathVariable("id") int id, @RequestBody Jogador jogador) {
         Jogador jogadorEditado = new Jogador();
         jogadorEditado = jogador_repository.getReferenceById(id);
         jogadorEditado.setEmail(jogador.getEmail());

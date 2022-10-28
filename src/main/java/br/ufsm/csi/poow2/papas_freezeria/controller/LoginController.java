@@ -22,7 +22,7 @@ public class LoginController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @PostMapping("/login")
+    @PostMapping("/freezeria/login")
     public ResponseEntity<Object> autenticacao(@RequestBody Jogador usuario){
         System.out.println("User: "+usuario.getEmail());
         System.out.println("Senha: "+usuario.getSenha());
