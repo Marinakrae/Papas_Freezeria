@@ -24,12 +24,12 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<Object> autenticacao(@RequestBody Jogador usuario){
-        System.out.println("User: "+usuario.getNome());
+        System.out.println("User: "+usuario.getEmail());
         System.out.println("Senha: "+usuario.getSenha());
 
         try {
             final Authentication autenticado = this.authenticationManager.authenticate
-                                        (new UsernamePasswordAuthenticationToken(usuario.getNome(),usuario.getSenha()));
+                                        (new UsernamePasswordAuthenticationToken(usuario.getEmail(),usuario.getSenha()));
             if(autenticado.isAuthenticated()){
                 //colocamos nossa instancia de autenticado no contexto do spring security
                 SecurityContextHolder.getContext().setAuthentication(autenticado);

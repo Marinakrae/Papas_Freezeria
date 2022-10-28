@@ -49,16 +49,30 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 //                .authenticationProvider(this.authProvider())
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
-//                .antMatchers(HttpMethod.GET, "/").permitAll()
-                .antMatchers(HttpMethod.GET, "/cliente/usuario").permitAll()
-                .antMatchers(HttpMethod.POST, "/cliente/descricao").permitAll()
-                .antMatchers(HttpMethod.GET, "/cliente/listar").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers(HttpMethod.GET, "/cliente/{id}").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers(HttpMethod.POST, "/cliente/salvar").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/cliente/apagar").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/cliente/editar/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/freezeria/pedido/exibir").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/freezeria/pedido/{id}").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/pedido/salvar").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/pedido/apagar").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/pedido/editar/{id}").hasAnyAuthority("USER", "ADMIN")
+
+                .antMatchers(HttpMethod.GET, "/freezeria/complementos/exibir").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/freezeria/complementos/{id}").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/complementos/salvar").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/complementos/apagar").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/complementos/editar/{id}").hasAnyAuthority("USER", "ADMIN")
+
+                .antMatchers(HttpMethod.GET, "/freezeria/jogador/exibir").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/freezeria/jogador/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/jogador/salvar").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/jogador/apagar").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/jogador/editar/{id}").hasAnyAuthority("USER", "ADMIN")
+
+                .antMatchers(HttpMethod.GET, "/freezeria/nivel/exibir").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/freezeria/nivel/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/nivel/salvar").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/nivel/apagar").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/freezeria/nivel/editar/{id}").hasAuthority("ADMIN")
                 .anyRequest().denyAll();
-//                .and().formLogin();
     }
 
 }

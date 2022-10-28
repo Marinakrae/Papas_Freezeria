@@ -11,7 +11,6 @@ public class Jogador implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_jogador")
     private int idJogador;
-
     private String nome;
     private String email;
     private String senha;

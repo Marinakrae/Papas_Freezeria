@@ -1,55 +1,54 @@
 package br.ufsm.csi.poow2.papas_freezeria.controller;
 
-import br.ufsm.csi.poow2.papas_freezeria.model.Jogador;
 import br.ufsm.csi.poow2.papas_freezeria.model.Pedido;
-import br.ufsm.csi.poow2.papas_freezeria.service.PedidoService;
+import br.ufsm.csi.poow2.papas_freezeria.repository.Pedido_Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController()
-@RequestMapping("pedido")
+@RequestMapping("freezeria/pedido")
 public class PedidoController {
 
-    //CRIAR UM objeto PEDIDO DAO AQUI
+    @Autowired
+    private static Pedido_Repository pedido_repository;
 
-    //TODOS - SEM AUTENTICAÇÃO
-    @GetMapping("/descricao")
-    public String toString(){
-        return "Controller pedido";
-    }
-
-    //USER - ADMIN
     @GetMapping("/listar")
-    public static ArrayList<Pedido> getPedido() {
-        return new PedidoService().getPedidos();
+    public static List<Pedido> getPedido() {
+        List<Pedido> pedidos = pedido_repository.findAll();
+        return pedidos;
     }
 
     @GetMapping("/{id}")
-    public static Pedido getPedido(@PathVariable("id") int id) {
-        return new PedidoService().getPedido(id);
+    public Pedido getPedido(@PathVariable("id") int id) {
+        Pedido pedido = pedido_repository.getReferenceById(id);
+        return pedido;
     }
 
-    //ADMIN
     @PostMapping("/salvar")
     public static void salvar(@RequestBody Pedido pedido) {
-        new PedidoService().salvar(pedido);
+        pedido_repository.save(pedido);
+        //chamar a url com objeto preenchido
     }
 
     //delete mapping?
     @PostMapping("/apagar")
     public static void apagar(@RequestBody Pedido pedido) {
-        new PedidoService().apagar(pedido);
+        pedido_repository.delete(pedido);
     }
 
     @PutMapping("/editar/{id}")
     public static void editar(@PathVariable("id") int id, @RequestBody Pedido pedido) {
-        new PedidoService().editar(id, pedido);
-    }
+        Pedido pedidoEditado = new Pedido();
+        pedidoEditado = pedido_repository.getReferenceById(id);
+        pedidoEditado.setCalda(pedido.getCalda());
+        pedidoEditado.setComplementos(pedido.getComplementos());
+        pedidoEditado.setNivel(pedido.getNivel());
+        pedidoEditado.setSabor(pedido.getSabor());
+        pedidoEditado.setSaborChantilly(pedido.getSaborChantilly());
+        pedidoEditado.setTamCopo(pedido.getTamCopo());
 
-    @GetMapping("/usuario")
-    public Jogador usuario(){
-        return new Jogador( 1, "Marina", "marina@teste", "123", "ADMIN");
+        pedido_repository.save(pedidoEditado);
     }
-
 }
