@@ -2,7 +2,9 @@ package br.ufsm.csi.poow2.papas_freezeria.controller;
 
 import br.ufsm.csi.poow2.papas_freezeria.model.Info_Jogador;
 import br.ufsm.csi.poow2.papas_freezeria.repository.Info_Jogador_Repository;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -24,7 +26,9 @@ public class Info_JogadorController {
         info_jogador_repository.save(InfoJogador);
     }
 
-    public static void apagar(@RequestBody Info_Jogador InfoJogador) {
+    @PostMapping("/apagar/{id}")
+    public void apagar(@PathVariable("id") int id) {
+        Info_Jogador InfoJogador = info_jogador_repository.getReferenceById(id);
         info_jogador_repository.delete(InfoJogador);
     }
 

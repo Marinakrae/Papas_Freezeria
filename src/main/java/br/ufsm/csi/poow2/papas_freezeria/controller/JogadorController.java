@@ -34,8 +34,9 @@ public class JogadorController {
     }
 
     //delete mapping?
-    @PostMapping("/apagar")
-    public void apagar(@RequestBody Jogador Jogador) {
+    @PostMapping("/apagar/{id}")
+    public void apagar(@PathVariable("id") int id) {
+        Jogador Jogador = jogador_repository.getReferenceById(id);
         jogador_repository.delete(Jogador);
     }
 

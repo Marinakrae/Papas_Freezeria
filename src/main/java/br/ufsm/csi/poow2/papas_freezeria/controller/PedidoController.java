@@ -33,8 +33,9 @@ public class PedidoController {
     }
 
     //delete mapping?
-    @PostMapping("/apagar")
-    public static void apagar(@RequestBody Pedido pedido) {
+    @PostMapping("/apagar/{id}")
+    public void apagar(@PathVariable("id") int id) {
+        Pedido pedido = pedido_repository.getReferenceById(id);
         pedido_repository.delete(pedido);
     }
 

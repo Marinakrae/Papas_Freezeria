@@ -3,6 +3,7 @@ package br.ufsm.csi.poow2.papas_freezeria.controller;
 import br.ufsm.csi.poow2.papas_freezeria.model.Desempenho_Nivel;
 import br.ufsm.csi.poow2.papas_freezeria.repository.Desempenho_Repository;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -25,7 +26,9 @@ public class DesempenhoController {
         desempenho_repository.save(Desempenho_Nivel);
     }
 
-    public static void apagar(@RequestBody Desempenho_Nivel Desempenho_Nivel) {
+    @PostMapping("/apagar/{id}")
+    public void apagar(@PathVariable("id") int id) {
+        Desempenho_Nivel Desempenho_Nivel = desempenho_repository.getReferenceById(id);
         desempenho_repository.delete(Desempenho_Nivel);
     }
 

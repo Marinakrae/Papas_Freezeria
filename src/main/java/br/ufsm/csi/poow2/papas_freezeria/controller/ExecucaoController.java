@@ -3,6 +3,7 @@ package br.ufsm.csi.poow2.papas_freezeria.controller;
 import br.ufsm.csi.poow2.papas_freezeria.model.Execucaco_Pedido;
 import br.ufsm.csi.poow2.papas_freezeria.repository.Execucao_Repository;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -25,7 +26,9 @@ public class ExecucaoController {
         execucao_repository.save(Execucaco_Pedido);
     }
 
-    public static void apagar(@RequestBody Execucaco_Pedido Execucaco_Pedido) {
+    @PostMapping("/apagar/{id}")
+    public void apagar(@PathVariable("id") int id) {
+        Execucaco_Pedido Execucaco_Pedido = execucao_repository.getReferenceById(id);
         execucao_repository.delete(Execucaco_Pedido);
     }
 
