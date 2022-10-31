@@ -11,15 +11,13 @@ public class Desempenho_Nivel implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_desempenho")
     private int idDesempenhoNivel;
     private int qtdPontosObtidos;
-    private float totalGorjetas;
     private int notaTotal;
     @ManyToOne
     @JoinColumn(name = "execucaco_pedido_id_execucao")
     private Execucaco_Pedido execucaco_pedido; //tem que poder receber várias
 
-    public Desempenho_Nivel(int qtdPontosObtidos, float totalGorjetas, int notaTotal, Execucaco_Pedido execucaco_pedido) {
+    public Desempenho_Nivel(int qtdPontosObtidos, int notaTotal, Execucaco_Pedido execucaco_pedido) {
         this.qtdPontosObtidos = qtdPontosObtidos;
-        this.totalGorjetas = totalGorjetas;
         this.notaTotal = notaTotal;
         this.execucaco_pedido = execucaco_pedido;
     }
@@ -41,14 +39,6 @@ public class Desempenho_Nivel implements Serializable {
 
     public void setQtdPontosObtidos(int qtdPontosObtidos) {
         this.qtdPontosObtidos = qtdPontosObtidos;
-    }
-
-    public float getTotalGorjetas() {
-        return totalGorjetas;
-    }
-
-    public void setTotalGorjetas(float totalGorjetas) {
-        this.totalGorjetas = totalGorjetas;
     }
 
     public int getNotaTotal() {

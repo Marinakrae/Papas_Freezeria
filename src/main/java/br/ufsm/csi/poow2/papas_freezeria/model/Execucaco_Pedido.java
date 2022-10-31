@@ -13,15 +13,13 @@ public class Execucaco_Pedido implements Serializable{
     private int idExecucao;
     private int numAcertos;
     private int nota;
-    private float gorjetas;
     @ManyToOne
     @JoinColumn(name = "pedido_id_pedido")
     private Pedido pedido;
 
-    public Execucaco_Pedido( int numAcertos, int nota, float gorjetas, Pedido pedido) {
+    public Execucaco_Pedido( int numAcertos, int nota, Pedido pedido) {
         this.numAcertos = numAcertos;
         this.nota = nota;
-        this.gorjetas = gorjetas;
         this.pedido = pedido;
     }
 
@@ -52,11 +50,4 @@ public class Execucaco_Pedido implements Serializable{
         this.nota = nota;
     }
 
-    public float getGorjetas() {
-        return gorjetas;
-    }
-
-    public void setGorjetas(float gorjetas) {
-        this.gorjetas = gorjetas;
-    }
 }

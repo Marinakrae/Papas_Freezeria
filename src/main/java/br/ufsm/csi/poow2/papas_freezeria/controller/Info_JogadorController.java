@@ -35,7 +35,6 @@ public class Info_JogadorController {
         infoJogadorEditado.setNivel(infoJogador.getNivel());
         infoJogadorEditado.setRank(infoJogador.getRank());
         infoJogadorEditado.setTotalPontos(infoJogador.getTotalPontos());
-        infoJogadorEditado.setTotalGorjetasGeral(infoJogador.getTotalGorjetasGeral());
 
         info_jogador_repository.save(infoJogadorEditado);
     }

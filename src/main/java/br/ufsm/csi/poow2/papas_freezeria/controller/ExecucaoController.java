@@ -32,7 +32,6 @@ public class ExecucaoController {
     public static void editar(@PathVariable("id") int id, @RequestBody Execucaco_Pedido execucaoPedido) {
         Execucaco_Pedido execucaoPedidoEditado = new Execucaco_Pedido();
         execucaoPedidoEditado = execucao_repository.getReferenceById(id);
-        execucaoPedidoEditado.setGorjetas(execucaoPedido.getGorjetas());
         execucaoPedidoEditado.setPedido(execucaoPedido.getPedido());
         execucaoPedidoEditado.setNota(execucaoPedido.getNota());
         execucaoPedidoEditado.setNumAcertos(execucaoPedido.getNumAcertos());

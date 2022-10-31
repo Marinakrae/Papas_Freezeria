@@ -13,7 +13,6 @@ public class Info_Jogador implements Serializable{
     private int idInfoJogador;
     private int rank;
     private int totalPontos;
-    private float totalGorjetasGeral;
     @ManyToOne
     @JoinColumn(name = "jogador_id_jogador")
     private Jogador jogador;
@@ -21,10 +20,9 @@ public class Info_Jogador implements Serializable{
     @JoinColumn(name = "nivel_id_nivel")
     private Nivel nivel;
 
-    public Info_Jogador(int rank, int totalPontos, float totalGorjetasGeral, Jogador jogador, Nivel nivel) {
+    public Info_Jogador(int rank, int totalPontos, Jogador jogador, Nivel nivel) {
         this.rank = rank;
         this.totalPontos = totalPontos;
-        this.totalGorjetasGeral = totalGorjetasGeral;
         this.jogador = jogador;
         this.nivel = nivel;
     }
@@ -46,14 +44,6 @@ public class Info_Jogador implements Serializable{
 
     public void setTotalPontos(int totalPontos) {
         this.totalPontos = totalPontos;
-    }
-
-    public float getTotalGorjetasGeral() {
-        return totalGorjetasGeral;
-    }
-
-    public void setTotalGorjetasGeral(float totalGorjetasGeral) {
-        this.totalGorjetasGeral = totalGorjetasGeral;
     }
 
     public Jogador getJogador() {

@@ -34,7 +34,6 @@ public class DesempenhoController {
         desempenhoNivelEditado = desempenho_repository.getReferenceById(id);
         desempenhoNivelEditado.setExecucaco_pedido(desempenhoNivel.getExecucaco_pedido());
         desempenhoNivelEditado.setNotaTotal(desempenhoNivel.getNotaTotal());
-        desempenhoNivelEditado.setTotalGorjetas(desempenhoNivel.getTotalGorjetas());
         desempenhoNivelEditado.setQtdPontosObtidos(desempenhoNivel.getQtdPontosObtidos());
 
         desempenho_repository.save(desempenhoNivelEditado);
