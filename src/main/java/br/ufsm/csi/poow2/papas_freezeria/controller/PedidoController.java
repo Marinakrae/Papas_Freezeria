@@ -14,6 +14,10 @@ public class PedidoController {
     @Autowired
     private static Pedido_Repository pedido_repository;
 
+    public PedidoController(Pedido_Repository pedido_repository) {
+        this.pedido_repository = pedido_repository;
+    }
+
     @GetMapping("/listar")
     public static List<Pedido> getPedido() {
         List<Pedido> pedidos = pedido_repository.findAll();
@@ -33,7 +37,7 @@ public class PedidoController {
     }
 
     //delete mapping?
-    @PostMapping("/apagar/{id}")
+    @DeleteMapping("/apagar/{id}")
     public void apagar(@PathVariable("id") int id) {
         Pedido pedido = pedido_repository.getReferenceById(id);
         pedido_repository.delete(pedido);

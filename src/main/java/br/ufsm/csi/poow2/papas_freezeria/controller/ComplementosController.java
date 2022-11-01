@@ -15,6 +15,10 @@ public class ComplementosController {
     @Autowired
     private static Complementos_Repository complementos_repository;
 
+    public ComplementosController(Complementos_Repository complementos_repository) {
+        this.complementos_repository = complementos_repository;
+    }
+
     @GetMapping("/listar")
     public static List<Complementos> getComplementos() {
         List<Complementos> complementos = complementos_repository.findAll();
@@ -32,7 +36,7 @@ public class ComplementosController {
         complementos_repository.save(complementos);
     }
 
-    @PostMapping("/apagar/{id}")
+    @DeleteMapping("/apagar/{id}")
     public void apagar(@PathVariable("id") int id) {
         Complementos complementos = complementos_repository.getReferenceById(id);
         complementos_repository.delete(complementos);

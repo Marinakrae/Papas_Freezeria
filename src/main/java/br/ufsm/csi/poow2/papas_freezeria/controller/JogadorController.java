@@ -11,10 +11,12 @@ import java.util.List;
 @RequestMapping("freezeria/jogador")
 public class JogadorController {
 
-    //colocar de volta os statics?
-
     @Autowired
     private Jogador_Repository jogador_repository;
+
+    public JogadorController(Jogador_Repository jogador_repository) {
+        this.jogador_repository = jogador_repository;
+    }
 
     @GetMapping("/listar")
     public List<Jogador> getJogador() {
@@ -34,7 +36,7 @@ public class JogadorController {
     }
 
     //delete mapping?
-    @PostMapping("/apagar/{id}")
+    @DeleteMapping("/apagar/{id}")
     public void apagar(@PathVariable("id") int id) {
         Jogador Jogador = jogador_repository.getReferenceById(id);
         jogador_repository.delete(Jogador);
