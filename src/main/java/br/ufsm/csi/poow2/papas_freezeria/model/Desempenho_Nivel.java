@@ -12,7 +12,7 @@ public class Desempenho_Nivel implements Serializable {
     private int idDesempenhoNivel;
     private int qtdPontosObtidos;
     private int notaTotal;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "execucaco_pedido_id_execucao")
     private Execucaco_Pedido execucaco_pedido; //tem que poder receber várias
 

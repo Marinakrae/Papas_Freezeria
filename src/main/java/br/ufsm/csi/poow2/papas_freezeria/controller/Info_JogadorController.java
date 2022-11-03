@@ -31,9 +31,8 @@ public class Info_JogadorController {
         info_jogador_repository.save(InfoJogador);
     }
 
-    public void apagar(int id) {
-        Info_Jogador InfoJogador = info_jogador_repository.getReferenceById(id);
-        info_jogador_repository.delete(InfoJogador);
+    public void apagar(Info_Jogador infoJogador) {
+        info_jogador_repository.delete(infoJogador);
     }
 
     public static void editar(int id, Info_Jogador infoJogador) {

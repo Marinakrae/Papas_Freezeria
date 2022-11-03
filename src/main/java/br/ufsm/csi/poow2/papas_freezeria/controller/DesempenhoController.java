@@ -29,10 +29,10 @@ public class DesempenhoController {
         desempenho_repository.save(Desempenho_Nivel);
     }
 
-    public void apagar( int id) {
-        Desempenho_Nivel Desempenho_Nivel = desempenho_repository.getReferenceById(id);
-        desempenho_repository.delete(Desempenho_Nivel);
+    public void apagar(Desempenho_Nivel desempenhoNivel) {
+        desempenho_repository.delete(desempenhoNivel);
     }
+
 
     public static void editar( int id, Desempenho_Nivel desempenhoNivel) {
         Desempenho_Nivel desempenhoNivelEditado = new Desempenho_Nivel();

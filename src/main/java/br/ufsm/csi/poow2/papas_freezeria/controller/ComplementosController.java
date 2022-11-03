@@ -36,9 +36,8 @@ public class ComplementosController {
         complementos_repository.save(complementos);
     }
 
-    @DeleteMapping("/apagar/{id}")
-    public void apagar(@PathVariable("id") int id) {
-        Complementos complementos = complementos_repository.getReferenceById(id);
+    @DeleteMapping("/apagar")
+    public void apagar(@RequestBody Complementos complementos) {
         complementos_repository.delete(complementos);
     }
 

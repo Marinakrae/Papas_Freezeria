@@ -52,27 +52,28 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/freezeria/pedido/listar").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.GET, "/freezeria/pedido/{id}").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/freezeria/pedido/salvar").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers(HttpMethod.POST, "/freezeria/pedido/apagar/{id}").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/freezeria/pedido/apagar").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.PUT, "/freezeria/pedido/editar/{id}").hasAnyAuthority("USER", "ADMIN")
 
                 .antMatchers(HttpMethod.GET, "/freezeria/complementos/listar").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.GET, "/freezeria/complementos/{id}").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/freezeria/complementos/salvar").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers(HttpMethod.POST, "/freezeria/complementos/apagar/{id}").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/freezeria/complementos/apagar").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.PUT, "/freezeria/complementos/editar/{id}").hasAnyAuthority("USER", "ADMIN")
 
                 .antMatchers(HttpMethod.GET, "/freezeria/jogador/listar").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/freezeria/jogador/{id}").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST, "/freezeria/jogador/salvar").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/freezeria/jogador/apagar/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/freezeria/jogador/apagar").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/freezeria/jogador/editar/{id}").hasAnyAuthority("USER", "ADMIN")
 
                 .antMatchers(HttpMethod.GET, "/freezeria/nivel/listar").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/freezeria/nivel/{id}").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST, "/freezeria/nivel/salvar").hasAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/freezeria/nivel/apagar/{id}").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/freezeria/nivel/apagar").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/freezeria/nivel/editar/{id}").hasAuthority("ADMIN")
                 .anyRequest().denyAll();
+
     }
 
 }

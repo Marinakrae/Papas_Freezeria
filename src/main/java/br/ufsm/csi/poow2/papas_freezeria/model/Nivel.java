@@ -1,6 +1,5 @@
 package br.ufsm.csi.poow2.papas_freezeria.model;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,7 +13,7 @@ public class Nivel implements Serializable {
     private int idNivel;
     private String dificuldade;
     private int pontos;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "desempenho_nivel_id_desempenho_nivel")
     private Desempenho_Nivel desempenho_nivel;
 

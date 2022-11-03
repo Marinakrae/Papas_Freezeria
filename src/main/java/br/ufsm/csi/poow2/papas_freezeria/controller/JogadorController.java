@@ -35,11 +35,10 @@ public class JogadorController {
         jogador_repository.save(Jogador);
     }
 
-    //delete mapping?
-    @DeleteMapping("/apagar/{id}")
-    public void apagar(@PathVariable("id") int id) {
-        Jogador Jogador = jogador_repository.getReferenceById(id);
-        jogador_repository.delete(Jogador);
+
+    @DeleteMapping("/apagar")
+    public void apagar(@RequestBody Jogador jogador) {
+        jogador_repository.delete(jogador);
     }
 
     @PutMapping("/editar/{id}")

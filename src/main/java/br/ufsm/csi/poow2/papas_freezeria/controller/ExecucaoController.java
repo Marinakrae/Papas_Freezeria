@@ -29,8 +29,7 @@ public class ExecucaoController {
         execucao_repository.save(Execucaco_Pedido);
     }
 
-    public void apagar(int id) {
-        Execucaco_Pedido Execucaco_Pedido = execucao_repository.getReferenceById(id);
+    public void apagar(Execucaco_Pedido Execucaco_Pedido) {
         execucao_repository.delete(Execucaco_Pedido);
     }
 

@@ -13,7 +13,7 @@ public class Execucaco_Pedido implements Serializable{
     private int idExecucao;
     private int numAcertos;
     private int nota;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "pedido_id_pedido")
     private Pedido pedido;
 

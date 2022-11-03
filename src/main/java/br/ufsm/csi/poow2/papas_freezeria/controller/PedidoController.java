@@ -37,9 +37,8 @@ public class PedidoController {
     }
 
     //delete mapping?
-    @DeleteMapping("/apagar/{id}")
-    public void apagar(@PathVariable("id") int id) {
-        Pedido pedido = pedido_repository.getReferenceById(id);
+    @DeleteMapping("/apagar")
+    public void apagar(@RequestBody Pedido pedido) {
         pedido_repository.delete(pedido);
     }
 

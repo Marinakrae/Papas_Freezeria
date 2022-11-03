@@ -1,7 +1,6 @@
 package br.ufsm.csi.poow2.papas_freezeria.controller;
 
 import br.ufsm.csi.poow2.papas_freezeria.model.Nivel;
-import br.ufsm.csi.poow2.papas_freezeria.repository.Complementos_Repository;
 import br.ufsm.csi.poow2.papas_freezeria.repository.Nivel_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ public class NivelController {
     @Autowired
     private static Nivel_Repository nivel_repository;
 
-    public NivelController(Complementos_Repository complementos_repository) {
+    public NivelController(Nivel_Repository nivel_repository) {
         this.nivel_repository = nivel_repository;
     }
 
@@ -36,9 +35,8 @@ public class NivelController {
         nivel_repository.save(niveis);
     }
 
-    @DeleteMapping("/apagar/{id}")
-    public void apagar(@PathVariable("id") int id) {
-        Nivel nivel = nivel_repository.getReferenceById(id);
+    @DeleteMapping("/apagar")
+    public void apagar(@RequestBody Nivel nivel) {
         nivel_repository.delete(nivel);
     }
 

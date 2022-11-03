@@ -15,10 +15,10 @@ public class Pedido implements Serializable {
     private String sabor;
     private String calda;
     private String saborChantilly;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "complementos_id_complementos")
     private Complementos complementos;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "nivel_id_nivel")
     private Nivel nivel;
 
