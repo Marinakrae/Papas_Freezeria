@@ -1,12 +1,14 @@
 package br.ufsm.csi.poow2.papas_freezeria.model;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
-@SequenceGenerator(name = "seq_pedido", sequenceName = "seq_pedido", allocationSize = 1, initialValue = 1)
+@SequenceGenerator(name = "seq_pedido", sequenceName = "seq_pedido", allocationSize = 1)
 public class Pedido implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pedido")
@@ -15,10 +17,10 @@ public class Pedido implements Serializable {
     private String sabor;
     private String calda;
     private String saborChantilly;
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "complementos_id_complementos")
     private Complementos complementos;
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "nivel_id_nivel")
     private Nivel nivel;
 

@@ -1,19 +1,21 @@
 package br.ufsm.csi.poow2.papas_freezeria.model;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
-@SequenceGenerator(name = "seq_execucao", sequenceName = "seq_execucao", allocationSize = 1, initialValue = 1)
+@SequenceGenerator(name = "seq_execucao", sequenceName = "seq_execucao", allocationSize = 1)
 public class Execucaco_Pedido implements Serializable{
 
+    @Serial
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_execucao")
     private int idExecucao;
     private int numAcertos;
     private int nota;
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "pedido_id_pedido")
     private Pedido pedido;
 

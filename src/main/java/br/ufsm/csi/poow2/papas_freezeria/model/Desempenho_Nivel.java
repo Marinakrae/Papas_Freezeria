@@ -1,18 +1,21 @@
 package br.ufsm.csi.poow2.papas_freezeria.model;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
-@SequenceGenerator(name = "seq_desempenho", sequenceName = "seq_desempenho", allocationSize = 1, initialValue = 1)
+@SequenceGenerator(name = "seq_desempenho", sequenceName = "seq_desempenho", allocationSize = 1)
 public class Desempenho_Nivel implements Serializable {
+
+    @Serial
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_desempenho")
     private int idDesempenhoNivel;
     private int qtdPontosObtidos;
     private int notaTotal;
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "execucaco_pedido_id_execucao")
     private Execucaco_Pedido execucaco_pedido; //tem que poder receber várias
 

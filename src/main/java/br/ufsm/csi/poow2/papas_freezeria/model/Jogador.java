@@ -1,12 +1,14 @@
 package br.ufsm.csi.poow2.papas_freezeria.model;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
-@SequenceGenerator(name = "seq_jogador", sequenceName = "seq_jogador", allocationSize = 1, initialValue = 1)
+@SequenceGenerator(name = "seq_jogador", sequenceName = "seq_jogador", allocationSize = 1)
 public class Jogador implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_jogador")

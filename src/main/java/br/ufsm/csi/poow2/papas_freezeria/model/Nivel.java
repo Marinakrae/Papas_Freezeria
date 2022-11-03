@@ -1,19 +1,21 @@
 package br.ufsm.csi.poow2.papas_freezeria.model;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
-@SequenceGenerator(name = "seq_Nivel", sequenceName = "seq_Nivel", allocationSize = 1, initialValue = 1)
+@SequenceGenerator(name = "seq_Nivel", sequenceName = "seq_Nivel", allocationSize = 1)
 public class Nivel implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_Nivel")
     private int idNivel;
     private String dificuldade;
     private int pontos;
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "desempenho_nivel_id_desempenho_nivel")
     private Desempenho_Nivel desempenho_nivel;
 
