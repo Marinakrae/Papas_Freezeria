@@ -1,9 +1,14 @@
 package br.ufsm.csi.poow2.papas_freezeria.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @SequenceGenerator(name = "seq_execucao", sequenceName = "seq_execucao", allocationSize = 1)
 public class Execucaco_Pedido implements Serializable{
@@ -12,28 +17,21 @@ public class Execucaco_Pedido implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_execucao")
-    private int idExecucao;
-    private int numAcertos;
+    private int id_execucao;
+    @Column
+    private int num_acertos;
+    @Column
     private int nota;
     @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "pedido_id_pedido")
     private Pedido pedido;
 
-    public Execucaco_Pedido( int numAcertos, int nota, Pedido pedido) {
-        this.numAcertos = numAcertos;
-        this.nota = nota;
-        this.pedido = pedido;
-    }
-
-    public Execucaco_Pedido() {
-    }
-
     public int getNumAcertos() {
-        return numAcertos;
+        return num_acertos;
     }
 
     public void setNumAcertos(int numAcertos) {
-        this.numAcertos = numAcertos;
+        this.num_acertos = numAcertos;
     }
 
     public Pedido getPedido() {

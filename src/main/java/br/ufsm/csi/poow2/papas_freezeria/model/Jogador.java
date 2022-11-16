@@ -1,9 +1,14 @@
 package br.ufsm.csi.poow2.papas_freezeria.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @SequenceGenerator(name = "seq_jogador", sequenceName = "seq_jogador", allocationSize = 1)
 public class Jogador implements Serializable {
@@ -12,29 +17,22 @@ public class Jogador implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_jogador")
-    private int idJogador;
+    private int id_Jogador;
+    @Column
     private String nome;
+    @Column
     private String email;
+    @Column
     private String senha;
+    @Column
     private String permissao;
 
-    public Jogador(int idJogador, String nome, String email, String senha, String permissao) {
-        this.idJogador = idJogador;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.permissao = permissao;
-    }
-
-    public Jogador() {
-    }
-
     public int getIdJogador() {
-        return idJogador;
+        return id_Jogador;
     }
 
     public void setIdJogador(int idJogador) {
-        this.idJogador = idJogador;
+        this.id_Jogador = idJogador;
     }
 
     public String getNome() {

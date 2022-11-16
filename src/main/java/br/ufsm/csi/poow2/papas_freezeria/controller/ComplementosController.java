@@ -13,37 +13,38 @@ import java.util.List;
 public class ComplementosController {
 
     @Autowired
-    private static Complementos_Repository complementos_repository;
+    private Complementos_Repository complementos_repository;
 
     public ComplementosController(Complementos_Repository complementos_repository) {
         this.complementos_repository = complementos_repository;
     }
 
     @GetMapping("/listar")
-    public static List<Complementos> getComplementos() {
-        List<Complementos> complementos = complementos_repository.findAll();
-        return complementos;
+    public List<Complementos> getComplementos() {
+        return complementos_repository.findAll();
     }
 
     @GetMapping("/{id}")
     public Complementos getComplementosById(@PathVariable("id") int id) {
-        Complementos complementos = complementos_repository.getReferenceById(id);
-        return complementos;
+        return complementos_repository.getReferenceById(id);
     }
 
     @PostMapping("/salvar")
-    public static void salvar(@RequestBody Complementos complementos) {
+    public void salvar(@RequestBody Complementos complementos) {
         complementos_repository.save(complementos);
     }
 
+    //substituir pela inativação
     @DeleteMapping("/apagar")
     public void apagar(@RequestBody Complementos complementos) {
+        //Ao inves de apagar, vamos inativar o registro
         complementos_repository.delete(complementos);
     }
 
     @PutMapping("/editar/{id}")
-    public static void editar(@PathVariable("id") int id, @RequestBody Complementos complementos) {
-        Complementos complementosEditado = new Complementos();
+    public void editar(@PathVariable("id") int id, @RequestBody Complementos complementos) {
+        new Complementos();
+        Complementos complementosEditado;
         complementosEditado = complementos_repository.getReferenceById(id);
         complementosEditado.setComplemento1(complementos.getComplemento1());
         complementosEditado.setComplemento2(complementos.getComplemento2());

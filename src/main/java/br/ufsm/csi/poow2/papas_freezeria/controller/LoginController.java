@@ -34,6 +34,7 @@ public class LoginController {
                 //colocamos nossa instancia de autenticado no contexto do spring security
                 SecurityContextHolder.getContext().setAuthentication(autenticado);
                 System.out.println("Está autenticado..........");
+                usuario.setSenha("*******");
                 return new ResponseEntity<>(usuario, HttpStatus.OK);
             }
 

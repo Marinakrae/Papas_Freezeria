@@ -9,33 +9,33 @@ import java.util.List;
 @Controller()
 public class DesempenhoController {
 
-    private static Desempenho_Repository desempenho_repository;
+    private final Desempenho_Repository desempenho_repository;
 
     public DesempenhoController(Desempenho_Repository desempenho_repository) {
         this.desempenho_repository = desempenho_repository;
     }
 
-    public static List<Desempenho_Nivel> getInfoJogadores() {
-        List<Desempenho_Nivel> Desempenho_Nivel = desempenho_repository.findAll();
-        return Desempenho_Nivel;
+    public List<Desempenho_Nivel> getInfoJogadores() {
+        return desempenho_repository.findAll();
     }
 
     public Desempenho_Nivel getInfoJogador(int id) {
-        Desempenho_Nivel Desempenho_Nivel = desempenho_repository.getReferenceById(id);
-        return Desempenho_Nivel;
+        return desempenho_repository.getReferenceById(id);
     }
 
-    public static void salvar(Desempenho_Nivel Desempenho_Nivel) {
+    public void salvar(Desempenho_Nivel Desempenho_Nivel) {
         desempenho_repository.save(Desempenho_Nivel);
     }
 
+    //substituir pela inativação
     public void apagar(Desempenho_Nivel desempenhoNivel) {
         desempenho_repository.delete(desempenhoNivel);
     }
 
 
-    public static void editar( int id, Desempenho_Nivel desempenhoNivel) {
-        Desempenho_Nivel desempenhoNivelEditado = new Desempenho_Nivel();
+    public void editar( int id, Desempenho_Nivel desempenhoNivel) {
+        new Desempenho_Nivel();
+        Desempenho_Nivel desempenhoNivelEditado;
         desempenhoNivelEditado = desempenho_repository.getReferenceById(id);
         desempenhoNivelEditado.setExecucaco_pedido(desempenhoNivel.getExecucaco_pedido());
         desempenhoNivelEditado.setNotaTotal(desempenhoNivel.getNotaTotal());

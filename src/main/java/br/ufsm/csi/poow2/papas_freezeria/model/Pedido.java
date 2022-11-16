@@ -1,10 +1,16 @@
 package br.ufsm.csi.poow2.papas_freezeria.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "pacote")
 @SequenceGenerator(name = "seq_pedido", sequenceName = "seq_pedido", allocationSize = 1)
 public class Pedido implements Serializable {
 
@@ -12,11 +18,14 @@ public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pedido")
-    private int idPedido;
-    private String tamCopo;
+    private int id_Pedido;
+    @Column
+    private String tam_copo;
+    @Column
     private String sabor;
+    @Column
     private String calda;
-    private String saborChantilly;
+    private String sabor_chantilly;
     @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "complementos_id_complementos")
     private Complementos complementos;
@@ -24,32 +33,14 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "nivel_id_nivel")
     private Nivel nivel;
 
-    public Pedido(int idPedido, String tamCopo, String sabor, String calda, String saborChantilly, Complementos complementos) {
-        this.idPedido = idPedido;
-        this.tamCopo = tamCopo;
-        this.sabor = sabor;
-        this.calda = calda;
-        this.saborChantilly = saborChantilly;
-        this.complementos = complementos;
+    //private boolean ativo;
+
+    public String getTam_copo() {
+        return tam_copo;
     }
 
-    public Pedido() {
-    }
-
-    public int getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
-    }
-
-    public String getTamCopo() {
-        return tamCopo;
-    }
-
-    public void setTamCopo(String tamCopo) {
-        this.tamCopo = tamCopo;
+    public void setTam_copo(String tam_copo) {
+        this.tam_copo = tam_copo;
     }
 
     public String getSabor() {
@@ -69,11 +60,11 @@ public class Pedido implements Serializable {
     }
 
     public String getSaborChantilly() {
-        return saborChantilly;
+        return sabor_chantilly;
     }
 
     public void setSaborChantilly(String saborChantilly) {
-        this.saborChantilly = saborChantilly;
+        this.sabor_chantilly = saborChantilly;
     }
 
     public Complementos getComplementos() {
@@ -90,5 +81,21 @@ public class Pedido implements Serializable {
 
     public void setNivel(Nivel nivel) {
         this.nivel = nivel;
+    }
+
+    public int getId_Pedido() {
+        return id_Pedido;
+    }
+
+    public void setId_Pedido(int id_Pedido) {
+        this.id_Pedido = id_Pedido;
+    }
+
+    public String getSabor_chantilly() {
+        return sabor_chantilly;
+    }
+
+    public void setSabor_chantilly(String sabor_chantilly) {
+        this.sabor_chantilly = sabor_chantilly;
     }
 }

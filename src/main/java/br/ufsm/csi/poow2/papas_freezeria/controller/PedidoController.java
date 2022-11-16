@@ -12,46 +12,44 @@ import java.util.List;
 public class PedidoController {
 
     @Autowired
-    private static Pedido_Repository pedido_repository;
+    private Pedido_Repository pedido_repository;
 
     public PedidoController(Pedido_Repository pedido_repository) {
         this.pedido_repository = pedido_repository;
     }
 
     @GetMapping("/listar")
-    public static List<Pedido> getPedido() {
-        List<Pedido> pedidos = pedido_repository.findAll();
-        return pedidos;
+    public List<Pedido> getPedido() {
+        return pedido_repository.findAll();
     }
 
     @GetMapping("/{id}")
     public Pedido getPedido(@PathVariable("id") int id) {
-        Pedido pedido = pedido_repository.getReferenceById(id);
-        return pedido;
+        return pedido_repository.getReferenceById(id);
     }
 
     @PostMapping("/salvar")
-    public static void salvar(@RequestBody Pedido pedido) {
+    public void salvar(@RequestBody Pedido pedido) {
+        System.out.println(pedido.getTam_copo());
         pedido_repository.save(pedido);
-        //chamar a url com objeto preenchido
     }
 
-    //delete mapping?
+    //substituir pela inativação
     @DeleteMapping("/apagar")
     public void apagar(@RequestBody Pedido pedido) {
         pedido_repository.delete(pedido);
     }
 
     @PutMapping("/editar/{id}")
-    public static void editar(@PathVariable("id") int id, @RequestBody Pedido pedido) {
-        Pedido pedidoEditado = new Pedido();
+    public void editar(@PathVariable("id") int id, @RequestBody Pedido pedido) {
+        Pedido pedidoEditado;
         pedidoEditado = pedido_repository.getReferenceById(id);
         pedidoEditado.setCalda(pedido.getCalda());
         pedidoEditado.setComplementos(pedido.getComplementos());
         pedidoEditado.setNivel(pedido.getNivel());
         pedidoEditado.setSabor(pedido.getSabor());
         pedidoEditado.setSaborChantilly(pedido.getSaborChantilly());
-        pedidoEditado.setTamCopo(pedido.getTamCopo());
+        pedidoEditado.setTam_copo(pedido.getTam_copo());
 
         pedido_repository.save(pedidoEditado);
     }

@@ -11,32 +11,32 @@ import java.util.List;
 @Controller()
 public class Info_JogadorController {
 
-    private static Info_Jogador_Repository info_jogador_repository;
+    private final Info_Jogador_Repository info_jogador_repository;
 
     public Info_JogadorController(Info_Jogador_Repository info_jogador_repository) {
         this.info_jogador_repository = info_jogador_repository;
     }
 
-    public static List<Info_Jogador> getInfoJogadores() {
-        List<Info_Jogador> Info_Jogador = info_jogador_repository.findAll();
-        return Info_Jogador;
+    public List<Info_Jogador> getInfoJogadores() {
+        return info_jogador_repository.findAll();
     }
 
     public Info_Jogador getInfoJogador(@PathVariable("id") int id) {
-        Info_Jogador InfoJogador = info_jogador_repository.getReferenceById(id);
-        return InfoJogador;
+        return info_jogador_repository.getReferenceById(id);
     }
 
-    public static void salvar(@RequestBody Info_Jogador InfoJogador) {
+    public void salvar(@RequestBody Info_Jogador InfoJogador) {
         info_jogador_repository.save(InfoJogador);
     }
 
+    //substituir pela inativação
     public void apagar(Info_Jogador infoJogador) {
         info_jogador_repository.delete(infoJogador);
     }
 
-    public static void editar(int id, Info_Jogador infoJogador) {
-        Info_Jogador infoJogadorEditado = new Info_Jogador();
+    public void editar(int id, Info_Jogador infoJogador) {
+        new Info_Jogador();
+        Info_Jogador infoJogadorEditado;
         infoJogadorEditado = info_jogador_repository.getReferenceById(id);
         infoJogadorEditado.setJogador(infoJogador.getJogador());
         infoJogadorEditado.setNivel(infoJogador.getNivel());

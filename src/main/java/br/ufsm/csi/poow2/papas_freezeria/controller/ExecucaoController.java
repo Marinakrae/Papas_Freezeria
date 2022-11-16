@@ -9,32 +9,32 @@ import java.util.List;
 @Controller()
 public class ExecucaoController {
 
-    private static Execucao_Repository execucao_repository;
+    private final Execucao_Repository execucao_repository;
 
     public ExecucaoController(Execucao_Repository execucao_repository) {
         this.execucao_repository = execucao_repository;
     }
 
-    public static List<Execucaco_Pedido> getExecucaoPedidos() {
-        List<Execucaco_Pedido> Execucaco_Pedido = execucao_repository.findAll();
-        return Execucaco_Pedido;
+    public List<Execucaco_Pedido> getExecucaoPedidos() {
+        return execucao_repository.findAll();
     }
 
     public Execucaco_Pedido getExecucaoPedido(int id) {
-        Execucaco_Pedido Execucaco_Pedido = execucao_repository.getReferenceById(id);
-        return Execucaco_Pedido;
+        return execucao_repository.getReferenceById(id);
     }
 
-    public static void salvar(Execucaco_Pedido Execucaco_Pedido) {
+    public void salvar(Execucaco_Pedido Execucaco_Pedido) {
         execucao_repository.save(Execucaco_Pedido);
     }
 
+    //substituir pela inativação
     public void apagar(Execucaco_Pedido Execucaco_Pedido) {
         execucao_repository.delete(Execucaco_Pedido);
     }
 
-    public static void editar(int id, Execucaco_Pedido execucaoPedido) {
-        Execucaco_Pedido execucaoPedidoEditado = new Execucaco_Pedido();
+    public void editar(int id, Execucaco_Pedido execucaoPedido) {
+        new Execucaco_Pedido();
+        Execucaco_Pedido execucaoPedidoEditado;
         execucaoPedidoEditado = execucao_repository.getReferenceById(id);
         execucaoPedidoEditado.setPedido(execucaoPedido.getPedido());
         execucaoPedidoEditado.setNota(execucaoPedido.getNota());

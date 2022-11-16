@@ -12,37 +12,37 @@ import java.util.List;
 public class NivelController {
 
     @Autowired
-    private static Nivel_Repository nivel_repository;
+    private Nivel_Repository nivel_repository;
 
     public NivelController(Nivel_Repository nivel_repository) {
         this.nivel_repository = nivel_repository;
     }
 
     @GetMapping("/listar")
-    public static List<Nivel> getComplementos() {
-        List<Nivel> niveis = nivel_repository.findAll();
-        return niveis;
+    public List<Nivel> getComplementos() {
+        return nivel_repository.findAll();
     }
 
     @GetMapping("/{id}")
     public Nivel getComplementosById(@PathVariable("id") int id) {
-        Nivel niveis = nivel_repository.getReferenceById(id);
-        return niveis;
+        return nivel_repository.getReferenceById(id);
     }
 
     @PostMapping("/salvar")
-    public static void salvar(@RequestBody Nivel niveis) {
+    public void salvar(@RequestBody Nivel niveis) {
         nivel_repository.save(niveis);
     }
 
+    //substituir pela inativação
     @DeleteMapping("/apagar")
     public void apagar(@RequestBody Nivel nivel) {
         nivel_repository.delete(nivel);
     }
 
     @PutMapping("/editar/{id}")
-    public static void editar(@PathVariable("id") int id, @RequestBody Nivel nivel) {
-        Nivel nivelEditado = new Nivel();
+    public void editar(@PathVariable("id") int id, @RequestBody Nivel nivel) {
+        new Nivel();
+        Nivel nivelEditado;
         nivelEditado = nivel_repository.getReferenceById(id);
         nivelEditado.setDesempenho_nivel(nivel.getDesempenho_nivel());
         nivelEditado.setIdNivel(nivel.getIdNivel());
