@@ -9,8 +9,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -39,13 +41,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(this.authProvider());
-//    }
+    @Bean
+    public FiltroAutenticacao filtroAutenticacao() throws Exception{
+        return new FiltroAutenticacao();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 //                .authenticationProvider(this.authProvider())
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/freezeria/login").permitAll()
@@ -73,6 +77,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/freezeria/nivel/apagar").hasAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/freezeria/nivel/editar/{id}").hasAuthority("ADMIN")
                 .anyRequest().denyAll();
+
+            http.addFilterBefore(this.filtroAutenticacao(), UsernamePasswordAuthenticationFilter.class);
 
     }
 

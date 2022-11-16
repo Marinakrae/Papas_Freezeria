@@ -2,6 +2,7 @@ package br.ufsm.csi.poow2.papas_freezeria.controller;
 
 import br.ufsm.csi.poow2.papas_freezeria.model.Jogador;
 import br.ufsm.csi.poow2.papas_freezeria.repository.Jogador_Repository;
+import br.ufsm.csi.poow2.papas_freezeria.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,12 @@ public class LoginController {
             if(autenticado.isAuthenticated()){
                 //colocamos nossa instancia de autenticado no contexto do spring security
                 SecurityContextHolder.getContext().setAuthentication(autenticado);
-                System.out.println("Está autenticado..........");
-                usuario.setSenha("*******");
+
+                System.out.println("Gerando token de autorizacao ****");
+                String token = new JWTUtil().geraToken(usuario);
+                usuario.setToken(token);
+
+                usuario.setSenha("******");
                 return new ResponseEntity<>(usuario, HttpStatus.OK);
             }
 

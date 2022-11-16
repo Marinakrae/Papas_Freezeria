@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "pacote")
+@Table(name = "pedido")
 @SequenceGenerator(name = "seq_pedido", sequenceName = "seq_pedido", allocationSize = 1)
 public class Pedido implements Serializable {
 

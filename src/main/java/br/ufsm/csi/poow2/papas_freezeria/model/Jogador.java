@@ -26,6 +26,24 @@ public class Jogador implements Serializable {
     private String senha;
     @Column
     private String permissao;
+    @Column
+    private String token;
+
+    public Jogador(int id_Jogador, String nome, String email, String senha, String permissao) {
+        this.id_Jogador = id_Jogador;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.permissao = permissao;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public int getIdJogador() {
         return id_Jogador;
