@@ -1,0 +1,74 @@
+<!-- HTML PARA O CADASTRO DE CLIENTE -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-100 col-md-100 col-lg-10 mx-auto">
+      <div class="card border-0 shadow rounded-9 my-9">
+        <div class="card-body p-10 p-sm-9">
+          <h2 class="card-title text-center mb-5 fw-light fs-5">
+            Cadastrar cliente
+          </h2>
+          <form >
+            <div class="form-group">
+              <label for="id">ID</label>
+              <input [(ngModel)]="cliente.id" type="number" name="id" class="form-control" id="id" aria-describedby="id" placeholder="Informe o ID do cliente">
+            </div>
+
+            <div class="form-group">
+              <label for="nome">NOME</label>
+              <input [(ngModel)]="cliente.nome" name="nome" type="text" class="form-control" id="nome" placeholder="Informe o nome do cliente">
+            </div>
+
+            <div class="form-group">
+              <label for="endereco">Endereço</label>
+              <input [(ngModel)]="cliente.endereco" name="endereco" type="text" class="form-control" id="endereco" placeholder="Informe o nome do endereco">
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="ativo" [checked]="cliente.ativo" >
+              <label class="form-check-label" for="flexCheckDefault">
+                Ativo ?
+              </label>
+            </div>
+            <br>   <br>
+            <button  (click)="cadastrar()"  class="btn btn-lg btn-primary btn-block" >CADASTRAR</button>
+            <br>
+
+          </form >
+
+
+          <div *ngIf="cadastrado" class="alert alert-success" role="alert">
+            <h2>Cliente nome: {{cliente.nome}} cadastrado com sucesso</h2>
+
+          </div>
+
+        </div>
+
+        <table class="table">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">NOME</th>
+            <th scope="col">ENDEREÇO</th>
+            <th scope="col">Ativo?</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let cli of clientes; index as i">
+            <th scope="row">{{i}}</th>
+            <th>{{cli.id}}</th>
+            <th>{{cli.nome}}</th>
+            <th>{{cli.endereco}}</th>
+            <th>
+              <input class="form-check-input" type="checkbox" id="flexCheckDefault1" [checked]="cli.ativo">
+            </th>
+          </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>s
